@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <base target="_top">
+    <meta charset="utf-8"/>
+  </head>
+  <body style="padding-left:5px;" style="padding-right:2px;">
+  <div>
+    <div class="inline form-group">
+    <label for="title">Título del examen:</label>
+    <input type="textarea" id="title" rows="2" style="width: 450px">
+    </div>
+  <p></p>
+    <input type="button" class="action" value="Crear" onclick="doc()"/>
+    <input type="button" value="Cerrar" onclick="google.script.host.close()" />
+  </div>
+  <script>
+    function doc(){
+    var examName = document.getElementById("title").value;
+    google.script.run.createDoc(examName);
+    }
+  </script>
+  </body>  
+</html>
