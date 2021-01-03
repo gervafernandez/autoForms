@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  </head>
+  <body>
+    <label for="select">Seleccione la clase desde la que desea importar el nombre, los apellidos y el email de sus alumnos.</label>
+    <p></p>
+    <div class="block form-group">
+      <select id='select' name='cursoSelect'>
+      <option value='0' selected>Selecciona la clase</option>
+      <? 
+      var optionalArgs = { courseStates: 'ACTIVE' , teacherId: 'me' };
+      var listaClases = Classroom.Courses.list(optionalArgs);
+      var cursos = listaClases.courses; 
+      if (cursos && cursos.length > 0) {          
+      for (var i = 0; i < cursos.length; i++) {
+      var course = cursos[i];
+      ?>
+      <option name="<?= course.id ?>"><?= course.name ?></option>
+      <? } ?>
+      <? } ?>
+      </select>
+    </div>
+    <br/>
+    <input class="action" type="submit" value="Importar" onclick='importar()' />
+    <input type="button" value="Cerrar" onclick="google.script.host.close()"/>
+  </body>
+  <script>
+    function importar(){
+      var seleccion = document.getElementById('select').value;
+      google.script.run.importarAlumnos(seleccion);
+    }
+  </script>
+</html>
