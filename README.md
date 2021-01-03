@@ -2,8 +2,6 @@
 
 En este repositorio se aloja el código del complemento para hojas de cálculo de Google **autoForms** que he desarrollado personalmente. En él se pueden ver tanto el código *GAS* como los archivos *HTML* necesararios para que el complemento funcione.
 
----
-
 ## 🧰 Contenido
 
 Se lista a continuación el conjunto de archivos que contiene este repositorio:
@@ -19,5 +17,3 @@ Se lista a continuación el conjunto de archivos que contiene este repositorio:
   9. menuDoc.html
   10. menuForm.html
   11. realizandoTareas.html
-  
----
