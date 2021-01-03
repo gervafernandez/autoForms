@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+    <base target="_top">
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+      <div class="inline form-group">
+        <label for='title'><strong>Título del formulario:</strong></label>
+        <p></p>
+        <input type="textarea" id="title" style="width: 350px">
+      </div>
+    <p></p>
+        <div>
+          <input type="radio" name="radio-a" id="radioManual" checked>
+          <label for="radioManual">Usar preguntas introducidas manualmente</label>
+        </div>
+        <div>
+          <input type="radio" name="radio-a" id="radioAleat" onchange="activaTextArea(this.checked)">
+          <label for="radioAleat">Usar preguntas aleatorias</label>
+        </div>
+        <div class="inline form-group">
+          <label for='preg'><i>Número de preguntas aleatorias:</i></label>
+          <input type="textarea" id="preg" disabled>
+        </div>
+        <br/>
+    <p><input type="button" class="create" value="Crear" onclick="run()"/>
+    <input type="button" value="Cerrar" onclick="google.script.host.close()" /></p>
+  <script>
+    function run(){
+      var examName = document.getElementById("title").value;
+      var numPreg = document.getElementById("preg").value;
+      var checkAleatorio = document.getElementById("checkbox").value;
+      google.script.run.createForm(examName,numPreg,checkAleatorio);
+    }
+  </script>
+  <script>
+    function activaTextArea(value){
+      if (value == true) {
+        document.getElementById("preg").disabled = false;
+      } else if (value == false) {
+        document.getElementById("preg").disabled = true;      
+      }
+    }
+  </script>
+  </body>  
+</html>
