@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="https://ssl.gstatic.com/docs/script/css/add-ons1.css">
+  </head>
+  <body style='padding-left:3px' style='padding-right:2px'>
+    <br/>
+    <label for="select">Selecciona la clase en la que crearás la tarea.</label>
+    <p></p>
+    <div class="block form-group">
+      <select id='select' name='cursoSelect'>
+      <option value='0' selected>Selecciona la clase</option>
+      <? 
+      var optionalArgs = { courseStates: 'ACTIVE' , teacherId: 'me' };
+      var listaClases = Classroom.Courses.list(optionalArgs);
+      var cursos = listaClases.courses; 
+      if (cursos && cursos.length > 0) {          
+      for (var i = 0; i < cursos.length; i++) {
+      var course = cursos[i];
+      ?>
+      <option name="<?= course.id ?>"><?= course.name ?></option>
+      <? } ?>
+      <? } ?>
+      </select>
+    </div>
+    <p></p>
+    <p>Rellena los siguientes campos para poder crear la tarea deseada:</p>
+    <div style="background-color:#ECEBEB;"> 
+      <div style="padding-left:5px;" style='padding-right:2px'>
+          <div class="form-group">
+            <label for="descripcion"><i>Título:</i></label>
+            <input type="titulo" id="titulo" style="width: 280px;">
+            <p></p>
+            <label for="descripcion"><i>Descripción:</i></label>
+            <textarea id="descripcion" rows="5" style="width: 285px;"></textarea>
+            <br/>
+          </div>
+     </div>
+    </div>
+    <br/>
+    <input class="share" type="button" value="COMPARTIR" onclick='comparte()'/>
+    <input type="button" value="Cerrar" onclick="google.script.host.close()"/>
+  </body>
+  <script>
+    function comparte(){
+      var clase = document.getElementById('select').value;
+      var titulo = document.getElementById('titulo').value;
+      var descripcion = document.getElementById('descripcion').value;
+      google.script.run.shareFormClassroom(clase,titulo,descripcion);
+    }
+  </script>
+</html>
